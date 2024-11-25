@@ -1,0 +1,37 @@
+[
+ {
+  "directory": "/Users/sean/src/wintmp",
+  "arguments": [
+   "clang",
+   "-target",
+   "aarch64-pc-windows-msvc",
+   "-std=c23",
+   "-pedantic",
+   "-O3",
+   "-fuse-ld=lld",
+   "-Wall",
+   "-Wextra",
+   "-Wno-missing-prototypes",
+   "-Wno-unused-parameter",
+   "-DUNICODE",
+   "-isystem/opt/xwin/splat/crt/include",
+   "-isystem/opt/xwin/splat/sdk/include",
+   "-isystem/opt/xwin/splat/sdk/include/cppwinrt",
+   "-isystem/opt/xwin/splat/sdk/include/ucrt",
+   "-isystem/opt/xwin/splat/sdk/include/shared",
+   "-isystem/opt/xwin/splat/sdk/include/um",
+   "-isystem/opt/xwin/splat/sdk/include/winrt",
+   "-L/opt/xwin/splat/crt/lib/aarch64",
+   "-L/opt/xwin/splat/sdk/lib/aarch64",
+   "-L/opt/xwin/splat/sdk/lib/ucrt/aarch64",
+   "-L/opt/xwin/splat/sdk/lib/um/aarch64",
+   "-o",
+   "helloworld_a64.exe",
+   "helloworld.c",
+   "-lkernel32",
+   "-luser32",
+   "-lgdi32"
+  ],
+  "file": "helloworld.c"
+ }
+]
