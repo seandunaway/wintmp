@@ -1,7 +1,7 @@
 xwin = /opt/xwin/
 
 CXX = clang
-CXXFLAGS += -target $(arch)-pc-windows-msvc -std=c23 -pedantic -O3 -fuse-ld=lld
+CXXFLAGS += -target $(arch)-pc-windows-msvc -std=c23 -pedantic -O3 -fuse-ld=lld -mwindows
 CXXFLAGS += -Wall -Wextra -Wno-missing-prototypes -Wno-unused-parameter
 CXXFLAGS += -DUNICODE
 CXXFLAGS += $(addprefix -isystem, $(header))
