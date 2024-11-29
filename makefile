@@ -6,7 +6,7 @@ CXXFLAGS += -Wall -Wextra -Wno-missing-prototypes -Wno-unused-parameter
 CXXFLAGS += -DUNICODE
 CXXFLAGS += $(addprefix -isystem, $(header))
 LDFLAGS += $(addprefix -L, $(addsuffix /$(arch), $(library)))
-LDLIBS += -lkernel32 -luser32 -lgdi32
+LDLIBS += -lgdi32 -lkernel32 -luser32
 
 header += ${xwin}splat/crt/include
 header += $(shell find $(xwin)splat/sdk/include -maxdepth 1 -type d)
@@ -18,14 +18,14 @@ aarch64 = $(src:.c=_a64.exe)
 x86_64 = $(src:.c=_x64.exe)
 
 default: aarch64 x86_64
-
-aarch64: arch = aarch64
 aarch64: $(aarch64)
+x86_64: $(x86_64)
+
+%_a64.exe: arch = aarch64
 %_a64.exe: %.c
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
-x86_64: arch = x86_64
-x86_64: $(x86_64)
+%_x64.exe: arch = x86_64
 %_x64.exe: %.c
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
