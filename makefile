@@ -1,12 +1,16 @@
-xwin = /opt/xwin/
+xwin ?= /opt/xwin/
 
 CXX = clang
-CXXFLAGS += -target $(arch)-pc-windows-msvc -std=c23 -pedantic -O3 -fuse-ld=lld -mwindows
+CXXFLAGS += -target $(arch)-pc-windows-msvc -std=c23 -pedantic -O3 -fuse-ld=lld
 CXXFLAGS += -Wall -Wextra -Wno-missing-prototypes -Wno-unused-parameter
 CXXFLAGS += -DUNICODE
 CXXFLAGS += $(addprefix -isystem, $(header))
 LDFLAGS += $(addprefix -L, $(addsuffix /$(arch), $(library)))
 LDLIBS += -lgdi32 -lkernel32 -luser32
+
+ifdef debug
+CXXFLAGS += -O0 -gdwarf -Wl,-debug:dwarf
+endif
 
 header += ${xwin}splat/crt/include
 header += $(shell find $(xwin)splat/sdk/include -maxdepth 1 -type d)
@@ -24,10 +28,12 @@ x86_64: $(x86_64)
 %_a64.exe: arch = aarch64
 %_a64.exe: %.c
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+	rm -f $*_a64.pdb
 
 %_x64.exe: arch = x86_64
 %_x64.exe: %.c
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+	rm -f $*_x64.pdb
 
 clean:
 	rm -f $(aarch64) $(aarch64:.exe=.pdb) $(x86_64) $(x86_64:.exe=.pdb)
