@@ -10,7 +10,7 @@ LDFLAGS += $(addprefix -L, $(addsuffix /$(arch), $(library)))
 LDLIBS += -lgdi32 -lkernel32 -luser32
 
 ifndef strip
-CXXFLAGS += -O0 -g
+CXXFLAGS += -O0 -g -fstandalone-debug
 endif
 
 header += ${xwin}/splat/crt/include
