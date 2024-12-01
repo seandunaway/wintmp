@@ -8,9 +8,11 @@
 			"initCommands": [
 				"platform select remote-windows",
 				"platform connect connect://windows-11:12345",
+				"platform settings -w z:/src/wintmp",
 			],
 			"targetCreateCommands": [
-				"target create ${fileBasenameNoExtension}_a64.exe",
+				"target create ${workspaceFolder}/${fileBasenameNoExtension}_a64.exe",
+				"platform status",
 			],
 			"processCreateCommands": [
 				"process launch",
