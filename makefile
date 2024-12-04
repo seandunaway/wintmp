@@ -1,5 +1,6 @@
 vm ?= 'Windows 11'
 xwin ?= /Users/sean/src/_lib/xwin
+source_map ?= z:/src
 
 CXX = clang
 CXXFLAGS += -target $(arch)-pc-windows-msvc -std=c23 -pedantic -O3 -fuse-ld=lld
@@ -10,7 +11,7 @@ LDFLAGS += $(addprefix -L, $(addsuffix /$(arch), $(library)))
 LDLIBS += -lgdi32 -lkernel32 -luser32
 
 ifndef strip
-CXXFLAGS += -O0 -g -fstandalone-debug
+CXXFLAGS += -O0 -g -fstandalone-debug -fdebug-prefix-map=/Users/sean/src=$(source_map)
 endif
 
 header += ${xwin}/splat/crt/include
@@ -36,8 +37,5 @@ x86_64: $(x86_64)
 
 clean:
 	rm -f $(aarch64) $(aarch64:.exe=.pdb) $(x86_64) $(x86_64:.exe=.pdb)
-
-lldb:
-	prlexec --vm $(vm) lldb-server platform --listen '*:12345'
 
 .PHONY: default aarch64 x86_64 clean lldb
