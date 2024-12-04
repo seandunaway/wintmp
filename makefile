@@ -3,7 +3,7 @@ xwin ?= /Users/sean/src/_lib/xwin
 
 CXX = clang
 CXXFLAGS += -target $(arch)-pc-windows-msvc -std=c23 -pedantic -O3 -fuse-ld=lld
-CXXFLAGS += -Wall -Wextra -Wno-missing-prototypes -Wno-unused-parameter
+CXXFLAGS += -Weverything -Wno-declaration-after-statement -Wno-missing-prototypes -Wno-unused-parameter
 CXXFLAGS += -DUNICODE
 CXXFLAGS += $(addprefix -isystem, $(header))
 LDFLAGS += $(addprefix -L, $(addsuffix /$(arch), $(library)))
