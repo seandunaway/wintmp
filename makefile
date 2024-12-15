@@ -8,7 +8,7 @@ CXXFLAGS += -Weverything -Wno-declaration-after-statement -Wno-missing-prototype
 CXXFLAGS += -DUNICODE
 CXXFLAGS += $(addprefix -isystem, $(header))
 LDFLAGS += $(addprefix -L, $(addsuffix /$(arch), $(library)))
-LDLIBS += -lgdi32 -lkernel32 -luser32
+LDLIBS += -ldwmapi -lgdi32 -lkernel32 -luser32
 
 ifndef strip
 CXXFLAGS += -O0 -g -fstandalone-debug -fdebug-prefix-map=/Users/sean/src=$(source_map)

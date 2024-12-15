@@ -28,9 +28,10 @@
    "-o",
    "helloworld_a64.exe",
    "helloworld.c",
+   "-ldwmapi",
+   "-lgdi32",
    "-lkernel32",
-   "-luser32",
-   "-lgdi32"
+   "-luser32"
   ],
   "file": "helloworld.c"
  }
