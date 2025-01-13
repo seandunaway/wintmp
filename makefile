@@ -1,5 +1,5 @@
 vm ?= 'Windows 11'
-xwin ?= /Users/sean/src/_lib/xwin
+winsdk ?= /Users/sean/src/_lib/winsdk
 source_map ?= z:/src
 
 CXX = clang
@@ -14,10 +14,8 @@ ifndef strip
 CXXFLAGS += -O0 -g -fstandalone-debug -fdebug-prefix-map=/Users/sean/src=$(source_map)
 endif
 
-header += ${xwin}/splat/crt/include
-header += $(shell find $(xwin)/splat/sdk/include -maxdepth 1 -type d)
-library += ${xwin}/splat/crt/lib
-library += $(shell find $(xwin)/splat/sdk/lib -maxdepth 1 -type d)
+header += $(shell find $(winsdk)/include -maxdepth 1 -type d)
+library += $(shell find $(winsdk)/lib -maxdepth 1 -type d)
 
 src = $(wildcard *.c)
 aarch64 = $(src:.c=_a64.exe)
